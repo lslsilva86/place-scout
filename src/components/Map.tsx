@@ -41,7 +41,7 @@ export default Map;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 5,
+    flex: 6,
   },
   map: {
     ...StyleSheet.absoluteFillObject,

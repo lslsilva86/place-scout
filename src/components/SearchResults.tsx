@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
 import { List } from '@ant-design/react-native';
@@ -25,7 +26,7 @@ const SearchResults = () => {
               multipleLine
             >
               <View>
-                <Text>{item.description}</Text>
+                <Text style={styles.itemText}>{item.description}</Text>
               </View>
             </List.Item>
           ))}
@@ -39,6 +40,12 @@ export default SearchResults;
 
 const styles = StyleSheet.create({
   searchResults: {
-    flex: 5,
+    flex: 4,
+    fontFamily: 'Lato-Bold',
+  },
+  itemText: {
+    fontFamily: 'Lato-Regular',
+    fontSize: 16,
+    color: '#666666',
   },
 });
