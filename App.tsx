@@ -1,14 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import SearchBox from './src/components/SearchBox';
-import SearchResults from './src/components/SearchResults';
-import Map from './src/components/Map';
+import React, { useCallback, useEffect, useState } from 'react';
+import { View, StyleSheet } from 'react-native';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import React from 'react';
+import { Provider } from 'react-redux';
+import HomeScreen from './src/screens/HomeScreen';
 
-// Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
 const loadFonts = () => {
@@ -20,6 +16,7 @@ const loadFonts = () => {
 
 const App: React.FC = () => {
   const [fontsLoaded, setFontsLoaded] = useState(false);
+
   useEffect(() => {
     loadFonts().then(() => setFontsLoaded(true));
   }, []);
@@ -39,10 +36,7 @@ const App: React.FC = () => {
       style={styles.container}
       onLayout={onLayoutRootView}
     >
-      <StatusBar style="auto" />
-      <SearchBox />
-      <SearchResults />
-      <Map />
+      <HomeScreen />
     </View>
   );
 };
