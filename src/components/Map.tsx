@@ -6,8 +6,9 @@ import { selectSelectedPlaceDetails } from '../redux/selectors';
 
 const Map = () => {
   const defaultCoordinates = {
-    latitude: 3.073838,
-    longitude: 101.518349,
+    // maybank headquarters coordinates
+    latitude: 3.1472732,
+    longitude: 101.6995352,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };

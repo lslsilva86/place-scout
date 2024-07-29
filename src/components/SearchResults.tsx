@@ -4,11 +4,11 @@ import { List } from '@ant-design/react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPlaces, setSelectedPlace, fetchPlaceDetails } from '../redux/actions';
 import { selectPlaces, selectError, selectQuery } from '../redux/selectors';
+import withLogging from './HOC/withLogging';
 
 const SearchResults = () => {
   const dispatch = useDispatch();
   const places = useSelector(selectPlaces);
-  const error = useSelector(selectError);
   const query = useSelector(selectQuery);
 
   useEffect(() => {
@@ -21,14 +21,6 @@ const SearchResults = () => {
     dispatch(setSelectedPlace(placeId));
     dispatch(fetchPlaceDetails(placeId));
   };
-
-  if (error) {
-    return (
-      <View style={styles.loadingContainer}>
-        <Text>Error: {error.message}</Text>
-      </View>
-    );
-  }
 
   return (
     <View style={styles.searchResults}>
@@ -50,7 +42,7 @@ const SearchResults = () => {
   );
 };
 
-export default SearchResults;
+export default withLogging(SearchResults);
 
 const styles = StyleSheet.create({
   searchResults: {

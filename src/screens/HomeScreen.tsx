@@ -10,7 +10,9 @@ const HomeScreen: React.FC = () => {
     <View style={styles.container}>
       <StatusBar style="auto" />
       <SearchBox />
-      <SearchResults />
+      <View style={styles.SearchResultsWrapper}>
+        <SearchResults />
+      </View>
       <Map />
     </View>
   );
@@ -20,6 +22,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  SearchResultsWrapper: {
+    flex: 4,
   },
 });
 
