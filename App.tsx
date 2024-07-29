@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
 import HomeScreen from './src/screens/HomeScreen';
 
 SplashScreen.preventAutoHideAsync();
@@ -32,12 +33,14 @@ const App: React.FC = () => {
   }
 
   return (
-    <View
-      style={styles.container}
-      onLayout={onLayoutRootView}
-    >
-      <HomeScreen />
-    </View>
+    <Provider store={store}>
+      <View
+        style={styles.container}
+        onLayout={onLayoutRootView}
+      >
+        <HomeScreen />
+      </View>
+    </Provider>
   );
 };
 

@@ -1,15 +1,36 @@
-import React from 'react';
-import { StyleSheet, Text } from 'react-native';
-import Input from '@ant-design/react-native/lib/input-item/Input';
-import { View } from '@ant-design/react-native';
+import React, { useState, useCallback } from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { fetchPlaces, setQuery } from '../redux/actions';
+import { debounce } from 'lodash';
 
-const SearchBox = () => {
+const SearchBox: React.FC = () => {
+  const dispatch = useDispatch();
+  const [query, setLocalQuery] = useState('');
+
+  const debouncedSearch = useCallback(
+    debounce((query) => {
+      if (query.length >= 3) {
+        dispatch(setQuery(query));
+        dispatch(fetchPlaces(query));
+      }
+    }, 300),
+    []
+  );
+
+  const handleChange = (text: string) => {
+    setLocalQuery(text);
+    debouncedSearch(text);
+  };
+
   return (
     <View style={styles.searchBox}>
       <Text style={styles.title}>Place SCOUT</Text>
-      <Input
-        placeholder="Search"
+      <TextInput
+        placeholder="Search places"
         style={styles.input}
+        value={query}
+        onChangeText={handleChange}
       />
     </View>
   );
@@ -38,7 +59,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     fontFamily: 'Lato-Regular',
     fontSize: 18,
-    fontWeight: 'bold',
     textAlign: 'center',
   },
 });
