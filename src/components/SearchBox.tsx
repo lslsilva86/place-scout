@@ -40,13 +40,13 @@ export default SearchBox;
 
 const styles = StyleSheet.create({
   searchBox: {
-    height: 150,
+    height: 175,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#ffc83d',
   },
   title: {
-    marginTop: 20,
+    marginTop: 50,
     marginBottom: 20,
     fontFamily: 'Lato-Bold',
     fontSize: 22,

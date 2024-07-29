@@ -6,17 +6,18 @@ import { selectSelectedPlaceDetails } from '../redux/selectors';
 
 const Map = () => {
   const defaultCoordinates = {
-    // maybank headquarters coordinates
+    // Maybank headquarters coordinates
     latitude: 3.1472732,
     longitude: 101.6995352,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
+
   const [coordinates, setCoordinates] = useState(defaultCoordinates);
   const selectedPlaceDetails = useSelector(selectSelectedPlaceDetails);
 
   useEffect(() => {
-    const coordinates = selectedPlaceDetails
+    const newCoordinates = selectedPlaceDetails
       ? {
           latitude: selectedPlaceDetails.location.latitude,
           longitude: selectedPlaceDetails.location.longitude,
@@ -24,7 +25,7 @@ const Map = () => {
           longitudeDelta: 0.0421,
         }
       : defaultCoordinates;
-    setCoordinates(coordinates);
+    setCoordinates(newCoordinates);
   }, [selectedPlaceDetails]);
 
   return (
@@ -36,7 +37,7 @@ const Map = () => {
         <Marker
           key="mapMarker"
           coordinate={coordinates}
-          title={selectedPlaceDetails?.formattedAddress}
+          title={selectedPlaceDetails?.formattedAddress || 'Maybank Headquarters'}
         />
       </MapView>
     </View>
