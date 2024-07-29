@@ -33,4 +33,9 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
 .history
+
+config.ts
+
+backup
